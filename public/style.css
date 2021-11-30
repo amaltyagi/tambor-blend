@@ -65,7 +65,7 @@ body {
   padding-right: 25px;
 }
 
-#login, #loggedin {
+#loggedin {
   display: none;
 }
 
