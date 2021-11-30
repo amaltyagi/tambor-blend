@@ -1,0 +1,107 @@
+body {
+  height: 1000px;
+}
+
+.home-divs {
+  display: flex;
+  flex-direction: column;
+  height: 120vw;
+  width: 100vw;
+}
+
+.top-div {
+  display: flex;
+  flex-direction: row;
+  /* border-bottom: 2px solid black; */
+  height: 100px;
+  width: 100vw;
+}
+
+.logo-div {
+  display: flex;
+  flex-direction: column;
+  padding-left: 25px;
+}
+
+#logo-company {
+  margin-top: -10px;
+  padding-bottom: 10px;
+}
+
+.bottom-div {
+  display: flex;
+  flex-direction: row;
+  height: 100vw;
+}
+
+.left-div {
+  display: flex;
+  flex-direction: column;
+  border-right: 2px solid black;
+  width: 50vw;
+  text-align: center;
+  padding-top: 50px;
+  padding-left: 30px;
+  padding-right: 25px;
+}
+
+#left1, #left2 {
+  margin-bottom: -11px;
+}
+
+#left1 {
+  margin-left: -62px;
+}
+
+#left2 {
+  margin-left: -53px;
+}
+
+.right-div {
+  text-align: center;
+  width: 50vw;
+  padding-top: 50px;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+#login, #loggedin {
+  display: none;
+}
+
+.text-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 500px;
+}
+
+.playlists-title {
+  margin-top: -90px;
+  padding-bottom: 30px;
+  /* padding-right: 13vw; */
+  text-align: center;
+}
+
+.playlists-box {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  height: 800px;
+  width: 75vw;
+  margin-top: 50px;
+  margin-left: 12vw;
+  border: 2px solid black;
+}
+
+.playlists-btns {
+  display: flex;
+  flex-direction: row;
+  margin-top: -44px;
+  margin-left: -2px;
+}
+
+#add-playlist-btn, #rem-playlist-btn {
+  border: 2px solid black;
+  padding: 10px 15px 10px 15px;
+}
