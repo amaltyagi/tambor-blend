@@ -50,6 +50,9 @@ app.get('/login', function(req, res) {
       redirect_uri: redirect_uri,
       state: state
     }));
+
+    console.log('redirect');
+    res.redirect('https://tambor-party.herokuapp.com/playlists.html/');
 });
 
 app.get('/callback', function(req, res) {
@@ -111,8 +114,7 @@ app.get('/callback', function(req, res) {
             refresh_token: refresh_token
           }));
 
-        console.log('redirect');
-        res.redirect('https://tambor-party.herokuapp.com/playlists.html/');
+        
       } else {
         res.redirect('/#' +
           querystring.stringify({
