@@ -321,6 +321,8 @@ app.get('/refresh_token', function(req, res) {
         );
         toCsv(topArtists, '_long_artists51-100');
       })
+
+      res.redirect(redirect_uri);
     }
   });
 });
