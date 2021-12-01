@@ -118,11 +118,11 @@
 
                   $('#login').hide();
                   $('#loggedin').show();
+                  window.location.replace("https://tambor-party.herokuapp.com/playlists.html");
                 }
             });
           } else {
               // render initial screen
-              window.location.replace("https://tambor-party.herokuapp.com/playlists.html");
               $('#login').show();
               $('#loggedin').hide();
           }
