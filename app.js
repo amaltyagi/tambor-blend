@@ -1,11 +1,12 @@
 const http = require('http');
 const port = process.env.PORT || 8888;
-var express = require('express'); // Express web server framework
-var request = require('request'); // "Request" library
-var cors = require('cors');
-var querystring = require('querystring');
-var cookieParser = require('cookie-parser');
+const express = require('express'); // Express web server framework
+const request = require('request'); // "Request" library
+const cors = require('cors');
+const querystring = require('querystring');
+const cookieParser = require('cookie-parser');
 const ObjectsToCsv = require('objects-to-csv');
+const mysql = require('mysql');
 
 var client_id = 'f6adfa99d13644548a1c60e653246502'; // Your client id
 var client_secret = '570f580bd2a34f63a9c0a3bd750e1fc6'; // Your secret
@@ -324,6 +325,10 @@ app.get('/refresh_token', function(req, res) {
         );
         toCsv(topArtists, '_long_artists51-100');
       })
+
+      // var con = mysql.createConnection({
+      //   host: 
+      // })
     }
   });
 });
