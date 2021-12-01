@@ -90,7 +90,7 @@
 
 .btn-primary, .btn-primary:hover {
   background-color: rgb(30,215,96);
-  border: rgb(30,215,96);
+  border: solid 2px black;
   height: 50px;
   /* padding-bottom: 20px; */
 }
@@ -148,7 +148,7 @@
 }
 
 #add-playlist-btn, #rem-playlist-btn {
-  border: rgb(30,215,96);
+  border: 2px solid black;
   /* padding: 10px 15px 10px 15px; */
   width: 120px;
   text-align: center;
@@ -157,5 +157,6 @@
 
 .add-playlist-text, .rem-playlist-text {
   margin-top: -20px;
-  padding-top: 15px;
+  padding-top: 2px;
+  font-size: 40pt;
 }
