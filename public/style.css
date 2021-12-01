@@ -46,7 +46,7 @@ body {
 }
 
 #left1, #left2 {
-  margin-bottom: -11px;
+  margin-bottom: -10px;
 }
 
 #left1 {
@@ -55,6 +55,10 @@ body {
 
 #left2 {
   margin-left: -53px;
+}
+
+#left3 {
+  margin-left: -1px;
 }
 
 .right-div {
