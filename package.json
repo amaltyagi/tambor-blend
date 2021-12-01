@@ -14,7 +14,7 @@
     "start": "node app.js"
   },
   "repository": {
-    "uype": "git",
+    "type": "git",
     "url": ""
   }
 }
