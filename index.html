@@ -70,8 +70,6 @@
     <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script>
       (function() {
-        console.log('h1');
-
         /**
          * Obtains parameters from the hash of the URL
          * @return Object
@@ -104,7 +102,6 @@
           alert('There was an error during the authentication');
         } else {
           if (access_token) {
-            console.log('h2');
             // render oauth info
             oauthPlaceholder.innerHTML = oauthTemplate({
               access_token: access_token,
@@ -124,14 +121,13 @@
                 }
             });
           } else {
-            console.log('h3');
               // render initial screen
+              window.location.replace("https://tambor-party.herokuapp.com/playlists.html");
               $('#login').show();
               $('#loggedin').hide();
           }
 
           document.getElementById('obtain-new-token').addEventListener('click', function() {
-            console.log('h4');
             $.ajax({
               url: '/refresh_token',
               data: {
