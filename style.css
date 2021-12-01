@@ -90,9 +90,9 @@
 
 .btn-primary, .btn-primary:hover {
   background-color: rgb(30,215,96);
+  border: rgb(30,215,96);
   height: 50px;
   /* padding-bottom: 20px; */
-  border: rgb(30,215,96);
 }
 
 .login-text {
@@ -148,7 +148,7 @@
 }
 
 #add-playlist-btn, #rem-playlist-btn {
-  border: 2px solid black;
+  border: rgb(30,215,96);
   /* padding: 10px 15px 10px 15px; */
   width: 120px;
   text-align: center;
