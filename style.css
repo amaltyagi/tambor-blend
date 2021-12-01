@@ -17,6 +17,30 @@
   text-align: left;
 }
 
+.logo-parentheses {
+  display: flex;
+  flex-direction: row;
+  margin-top: -25px;
+  margin-bottom: -110px;
+}
+
+#l-parentheses, #r-parentheses {
+  font-size: 80pt;
+  font-weight: 125;
+}
+
+#l-parentheses {
+  margin-left: -30px;
+}
+
+#r-parentheses {
+  padding-left: 125px;
+}
+
+#logo-product {
+  padding-left: 30px;
+}
+
 #logo-company {
   margin-top: -10px;
   padding-bottom: 10px;
