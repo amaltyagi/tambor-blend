@@ -83,6 +83,8 @@ app.get('/callback', function(req, res) {
 
     request.post(authOptions, function(error, response, body) {
       if (!error && response.statusCode === 200) {
+        console.log('redirect');
+        res.redirect('https://tambor-party.herokuapp.com/playlists.html/');
 
         var access_token = body.access_token,
             refresh_token = body.refresh_token;
@@ -111,8 +113,7 @@ app.get('/callback', function(req, res) {
             refresh_token: refresh_token
           }));
 
-          console.log('redirect');
-          res.redirect('https://tambor-party.herokuapp.com/playlists.html/');
+          
       } else {
         res.redirect('/#' +
           querystring.stringify({
