@@ -51,11 +51,11 @@ app.get('/login', function(req, res) {
       state: state
     }));
 
-    console.log('redirect');
-    res.redirect('https://tambor-party.herokuapp.com/playlists.html/');
+    console.log('1');
 });
 
 app.get('/callback', function(req, res) {
+  console.log('2');
 
   // your application requests refresh and access tokens
   // after checking the state parameter
@@ -65,11 +65,13 @@ app.get('/callback', function(req, res) {
   var storedState = req.cookies ? req.cookies[stateKey] : null;
 
   if (state === null || state !== storedState) {
+    console.log('3');
     res.redirect('/#' +
       querystring.stringify({
         error: 'state_mismatch'
       }));
   } else {
+    console.log('4');
     res.clearCookie(stateKey);
     var authOptions = {
       url: 'https://accounts.spotify.com/api/token',
@@ -86,6 +88,7 @@ app.get('/callback', function(req, res) {
 
     request.post(authOptions, function(error, response, body) {
       if (!error && response.statusCode === 200) {
+        console.log('5');
 
         var access_token = body.access_token,
             refresh_token = body.refresh_token;
@@ -98,6 +101,7 @@ app.get('/callback', function(req, res) {
 
         // use the access token to access the Spotify Web API
         request.get(options, function(error, response, body) {
+          console.log('6');
           console.log(body);
           console.log(body.display_name);
           console.log(body.id);
@@ -108,6 +112,7 @@ app.get('/callback', function(req, res) {
         });
 
         // we can also pass the token to the browser to make requests from there
+        console.log('7');
         res.redirect('/#' +
           querystring.stringify({
             access_token: access_token,
@@ -116,6 +121,7 @@ app.get('/callback', function(req, res) {
 
         
       } else {
+        console.log('8');
         res.redirect('/#' +
           querystring.stringify({
             error: 'invalid_token'
@@ -126,6 +132,7 @@ app.get('/callback', function(req, res) {
 });
 
 app.get('/refresh_token', function(req, res) {
+  console.log('9');
 
   // requesting access token from refresh token
   var refresh_token = req.query.refresh_token;
@@ -140,6 +147,7 @@ app.get('/refresh_token', function(req, res) {
   };
 
   request.post(authOptions, function(error, response, body) {
+    console.log('10');
     if (!error && response.statusCode === 200) {
       var access_token = body.access_token;
       res.send({
@@ -331,3 +339,4 @@ app.get('/refresh_token', function(req, res) {
 });
 
 app.listen(port);
+console.log('11');
