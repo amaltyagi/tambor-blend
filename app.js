@@ -31,7 +31,7 @@ var stateKey = 'spotify_auth_state';
 
 var app = express();
 
-app.use(express.static(__dirname + '/public'))
+app.use(express.static(__dirname))
   .use(cors())
   .use(cookieParser());
 
@@ -52,7 +52,7 @@ app.get('/login', function(req, res) {
     }));
 });
 
-app.get('/playlists.html/', function(req, res) {
+app.get('/playlists/', function(req, res) {
 
   // your application requests refresh and access tokens
   // after checking the state parameter
