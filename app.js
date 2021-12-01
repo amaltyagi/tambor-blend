@@ -52,7 +52,7 @@ app.get('/login', function(req, res) {
     }));
 });
 
-app.get('/playlists/', function(req, res) {
+app.get('/playlists.html/', function(req, res) {
 
   // your application requests refresh and access tokens
   // after checking the state parameter
