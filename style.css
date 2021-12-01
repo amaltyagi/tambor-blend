@@ -1,13 +1,7 @@
-body {
-  height: 1000px;
-  background-color: aliceblue;
-}
-
 .home-divs {
   display: flex;
-  flex-direction: column;
-  height: 120vw;
-  width: 100vw;
+  flex-direction: row;
+  height: 100vw;
 }
 
 .top-div {
@@ -21,18 +15,12 @@ body {
 .logo-div {
   display: flex;
   flex-direction: column;
-  padding-left: 25px;
+  text-align: left;
 }
 
 #logo-company {
   margin-top: -10px;
   padding-bottom: 10px;
-}
-
-.bottom-div {
-  display: flex;
-  flex-direction: row;
-  height: 100vw;
 }
 
 .left-div {
@@ -41,7 +29,6 @@ body {
   border-right: 2px solid black;
   width: 50vw;
   text-align: center;
-  padding-top: 50px;
   padding-left: 30px;
   padding-right: 25px;
 }
@@ -51,6 +38,7 @@ body {
 }
 
 #left1 {
+  padding-top: 120px;
   margin-left: -60px;
 }
 
@@ -63,11 +51,28 @@ body {
 }
 
 .right-div {
+  background-color: black;
+  color: white;
   text-align: center;
   width: 50vw;
-  padding-top: 50px;
+  padding-top: 270px;
   padding-left: 25px;
   padding-right: 25px;
+}
+
+.btn-primary, .btn-primary:hover {
+  background-color: rgb(30,215,96);
+  height: 50px;
+  /* padding-bottom: 20px; */
+  border: rgb(30,215,96);
+}
+
+.login-text {
+  margin-top: -4px;
+}
+
+.btn-primary:hover {
+ transform: scale(1.1);
 }
 
 #login, #loggedin {
