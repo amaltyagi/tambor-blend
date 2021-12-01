@@ -83,6 +83,8 @@ app.get('/playlists.html/', function(req, res) {
 
     request.post(authOptions, function(error, response, body) {
       if (!error && response.statusCode === 200) {
+        console.log('redirect');
+        res.redirect(redirect_uri);
 
         var access_token = body.access_token,
             refresh_token = body.refresh_token;
@@ -321,8 +323,6 @@ app.get('/refresh_token', function(req, res) {
         );
         toCsv(topArtists, '_long_artists51-100');
       })
-      console.log('redirecting');
-      res.redirect(redirect_uri);
     }
   });
 });
