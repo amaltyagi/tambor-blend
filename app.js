@@ -9,7 +9,7 @@ const ObjectsToCsv = require('objects-to-csv');
 
 var client_id = 'f6adfa99d13644548a1c60e653246502'; // Your client id
 var client_secret = '570f580bd2a34f63a9c0a3bd750e1fc6'; // Your secret
-var redirect_uri = 'https://tambor-party.herokuapp.com/playlists.html/'; // Your redirect uri
+var redirect_uri = 'https://tambor-party.herokuapp.com/callback/'; // Your redirect uri
 let curr_id;
 
 /**
@@ -84,7 +84,7 @@ app.get('/playlists.html/', function(req, res) {
     request.post(authOptions, function(error, response, body) {
       if (!error && response.statusCode === 200) {
         console.log('redirect');
-        res.redirect(redirect_uri);
+        res.redirect('https://tambor-party.herokuapp.com/playlists.html/');
 
         var access_token = body.access_token,
             refresh_token = body.refresh_token;
