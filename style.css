@@ -1,13 +1,12 @@
 .home-divs {
   display: flex;
   flex-direction: row;
-  height: 100vw;
+  height: 100vh;
 }
 
 .top-div {
   display: flex;
   flex-direction: row;
-  /* border-bottom: 2px solid black; */
   height: 100px;
   width: 100vw;
 }
@@ -89,7 +88,6 @@
 .playlists-title {
   margin-top: -90px;
   padding-bottom: 30px;
-  /* padding-right: 13vw; */
   text-align: center;
 }
 
