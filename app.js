@@ -151,7 +151,7 @@ app.get('/refresh_token', function(req, res) {
         if (err) throw err;
         console.log('connected');
         con.query(
-          "INSERT INTO users 0, 'test', 'test', 'test', 'test', 'test'",
+          "INSERT INTO users (user_id, user_email, user_name, user_uri, user_displayname, user_country) VALUES (0, 'test', 'test', 'test', 'test', 'test')",
           function(err, result) {
             if (err) throw err;
             console.log('vals inserted');
