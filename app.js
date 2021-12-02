@@ -10,7 +10,7 @@ const mysql = require('mysql');
 
 var client_id = 'f6adfa99d13644548a1c60e653246502'; // Your client id
 var client_secret = '570f580bd2a34f63a9c0a3bd750e1fc6'; // Your secret
-var redirect_uri = 'https://tambor-party.herokuapp.com/callback/'; // Your redirect uri
+var redirect_uri = 'https://tambor-blend.herokuapp.com/callback/'; // Your redirect uri
 let curr_id;
 
 /**
