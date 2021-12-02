@@ -43,12 +43,13 @@
 }
 
 #logo-product {
-  padding-left: 30px;
+  padding-left: 10px;
 }
 
 #logo-company {
   margin-top: -10px;
   padding-bottom: 10px;
+  padding-left: 4px;
 }
 
 .left-div {
