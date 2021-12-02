@@ -140,6 +140,24 @@ app.get('/refresh_token', function(req, res) {
 
   request.post(authOptions, function(error, response, body) {
     if (!error && response.statusCode === 200) {
+      var con = mysql.createConnection({
+        HOST: "us-cdbr-east-04.cleardb.com",
+        USER: "b8ecddea309a73",
+        PASSWORD: "99ff4e22",
+        DB: "heroku_50ae15780e97258"
+      });
+
+      con.connect(function(err) {
+        if (err) throw err;
+        console.log('connected');
+        con.query(
+          "INSERT INTO users 0, 'test', 'test', 'test', 'test', 'test'",
+          function(err, result) {
+            if (err) throw err;
+            console.log('vals inserted');
+        });
+      });
+
       var access_token = body.access_token;
       res.send({
         'access_token': access_token
@@ -153,178 +171,178 @@ app.get('/refresh_token', function(req, res) {
         json: true
       };
 
-      async function toCsv(list, file) {
-        const csv = new ObjectsToCsv(list);
-        await csv.toDisk('./user_data/'+curr_id+file+'.csv');
-      }
+      // async function toCsv(list, file) {
+      //   const csv = new ObjectsToCsv(list);
+      //   await csv.toDisk('./user_data/'+curr_id+file+'.csv');
+      // }
 
-      options['url'] = 'https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=50';
-      request.get(options, function(err, res, body) {
-        var topTracks = [];
-        body.items.forEach(track => 
-          track.artists.forEach(artist => 
-            topTracks.push([
-              artist.name, artist.uri, 
-              track.album.name, track.album.uri, track.album.release_date, 
-              track.name, track.uri
-            ])
-          )
-        );
-        toCsv(topTracks, '_short_tracks1-50');
-      })
+      // options['url'] = 'https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=50';
+      // request.get(options, function(err, res, body) {
+      //   var topTracks = [];
+      //   body.items.forEach(track => 
+      //     track.artists.forEach(artist => 
+      //       topTracks.push([
+      //         artist.name, artist.uri, 
+      //         track.album.name, track.album.uri, track.album.release_date, 
+      //         track.name, track.uri
+      //       ])
+      //     )
+      //   );
+      //   toCsv(topTracks, '_short_tracks1-50');
+      // })
 
-      options['url'] = 'https://api.spotify.com/v1/me/top/tracks?time_range=short_term&offset=49&limit=50';
-      request.get(options, function(err, res, body) {
-        var topTracks = [];
-        body.items.forEach(track => 
-          track.artists.forEach(artist => 
-            topTracks.push([
-              artist.name, artist.uri, 
-              track.album.name, track.album.uri, track.album.release_date, 
-              track.name, track.uri
-            ])
-          )
-        );
-        toCsv(topTracks, '_short_tracks51-100');
-      })
+      // options['url'] = 'https://api.spotify.com/v1/me/top/tracks?time_range=short_term&offset=49&limit=50';
+      // request.get(options, function(err, res, body) {
+      //   var topTracks = [];
+      //   body.items.forEach(track => 
+      //     track.artists.forEach(artist => 
+      //       topTracks.push([
+      //         artist.name, artist.uri, 
+      //         track.album.name, track.album.uri, track.album.release_date, 
+      //         track.name, track.uri
+      //       ])
+      //     )
+      //   );
+      //   toCsv(topTracks, '_short_tracks51-100');
+      // })
 
-      options['url'] = 'https://api.spotify.com/v1/me/top/tracks?time_range=medium_term&limit=50';
-      request.get(options, function(err, res, body) {
-        var topTracks = [];
-        body.items.forEach(track => 
-          track.artists.forEach(artist => 
-            topTracks.push([
-              artist.name, artist.uri, 
-              track.album.name, track.album.uri, track.album.release_date, 
-              track.name, track.uri
-            ])
-          )
-        );
-        toCsv(topTracks, '_medium_tracks1-50');
-      })
+      // options['url'] = 'https://api.spotify.com/v1/me/top/tracks?time_range=medium_term&limit=50';
+      // request.get(options, function(err, res, body) {
+      //   var topTracks = [];
+      //   body.items.forEach(track => 
+      //     track.artists.forEach(artist => 
+      //       topTracks.push([
+      //         artist.name, artist.uri, 
+      //         track.album.name, track.album.uri, track.album.release_date, 
+      //         track.name, track.uri
+      //       ])
+      //     )
+      //   );
+      //   toCsv(topTracks, '_medium_tracks1-50');
+      // })
 
-      options['url'] = 'https://api.spotify.com/v1/me/top/tracks?time_range=medium_term&offset=49&limit=50';
-      request.get(options, function(err, res, body) {
-        var topTracks = [];
-        body.items.forEach(track => 
-          track.artists.forEach(artist => 
-            topTracks.push([
-              artist.name, artist.uri, 
-              track.album.name, track.album.uri, track.album.release_date, 
-              track.name, track.uri
-            ])
-          )
-        );
-        toCsv(topTracks, '_medium_tracks51-100');
-      })
+      // options['url'] = 'https://api.spotify.com/v1/me/top/tracks?time_range=medium_term&offset=49&limit=50';
+      // request.get(options, function(err, res, body) {
+      //   var topTracks = [];
+      //   body.items.forEach(track => 
+      //     track.artists.forEach(artist => 
+      //       topTracks.push([
+      //         artist.name, artist.uri, 
+      //         track.album.name, track.album.uri, track.album.release_date, 
+      //         track.name, track.uri
+      //       ])
+      //     )
+      //   );
+      //   toCsv(topTracks, '_medium_tracks51-100');
+      // })
 
-      options['url'] = 'https://api.spotify.com/v1/me/top/tracks?time_range=long_term&limit=50';
-      request.get(options, function(err, res, body) {
-        var topTracks = [];
-        body.items.forEach(track => 
-          track.artists.forEach(artist => 
-            topTracks.push([
-              artist.name, artist.uri, 
-              track.album.name, track.album.uri, track.album.release_date, 
-              track.name, track.uri
-            ])
-          )
-        );
-        toCsv(topTracks, '_long_tracks1-50');
-      })
+      // options['url'] = 'https://api.spotify.com/v1/me/top/tracks?time_range=long_term&limit=50';
+      // request.get(options, function(err, res, body) {
+      //   var topTracks = [];
+      //   body.items.forEach(track => 
+      //     track.artists.forEach(artist => 
+      //       topTracks.push([
+      //         artist.name, artist.uri, 
+      //         track.album.name, track.album.uri, track.album.release_date, 
+      //         track.name, track.uri
+      //       ])
+      //     )
+      //   );
+      //   toCsv(topTracks, '_long_tracks1-50');
+      // })
 
-      options['url'] = 'https://api.spotify.com/v1/me/top/tracks?time_range=long_term&offset=49&limit=50';
-      request.get(options, function(err, res, body) {
-        var topTracks = [];
-        body.items.forEach(track => 
-          track.artists.forEach(artist => 
-            topTracks.push([
-              artist.name, artist.uri, 
-              track.album.name, track.album.uri, track.album.release_date, 
-              track.name, track.uri
-            ])
-          )
-        );
-        toCsv(topTracks, '_long_tracks51-100');
-      })
+      // options['url'] = 'https://api.spotify.com/v1/me/top/tracks?time_range=long_term&offset=49&limit=50';
+      // request.get(options, function(err, res, body) {
+      //   var topTracks = [];
+      //   body.items.forEach(track => 
+      //     track.artists.forEach(artist => 
+      //       topTracks.push([
+      //         artist.name, artist.uri, 
+      //         track.album.name, track.album.uri, track.album.release_date, 
+      //         track.name, track.uri
+      //       ])
+      //     )
+      //   );
+      //   toCsv(topTracks, '_long_tracks51-100');
+      // })
 
-      options['url'] = 'https://api.spotify.com/v1/me/top/artists?time_range=short_term&limit=50';
-      request.get(options, function(err, res, body) {
-        var topArtists = [];
-        body.items.forEach(artist => 
-          artist.genres.forEach(genre =>
-            topArtists.push([
-              artist.name, artist.uri, genre
-            ])
-          )
-        );
-        toCsv(topArtists, '_short_artists1-50');
-      })
+      // options['url'] = 'https://api.spotify.com/v1/me/top/artists?time_range=short_term&limit=50';
+      // request.get(options, function(err, res, body) {
+      //   var topArtists = [];
+      //   body.items.forEach(artist => 
+      //     artist.genres.forEach(genre =>
+      //       topArtists.push([
+      //         artist.name, artist.uri, genre
+      //       ])
+      //     )
+      //   );
+      //   toCsv(topArtists, '_short_artists1-50');
+      // })
 
-      options['url'] = 'https://api.spotify.com/v1/me/top/artists?time_range=short_term&offset=49&limit=50';
-      request.get(options, function(err, res, body) {
-        var topArtists = [];
-        body.items.forEach(artist => 
-          artist.genres.forEach(genre =>
-            topArtists.push([
-              artist.name, artist.uri, genre
-            ])
-          )
-        );
-        toCsv(topArtists, '_short_artists51-100');
-      })
+      // options['url'] = 'https://api.spotify.com/v1/me/top/artists?time_range=short_term&offset=49&limit=50';
+      // request.get(options, function(err, res, body) {
+      //   var topArtists = [];
+      //   body.items.forEach(artist => 
+      //     artist.genres.forEach(genre =>
+      //       topArtists.push([
+      //         artist.name, artist.uri, genre
+      //       ])
+      //     )
+      //   );
+      //   toCsv(topArtists, '_short_artists51-100');
+      // })
 
-      options['url'] = 'https://api.spotify.com/v1/me/top/artists?time_range=medium_term&limit=50';
-      request.get(options, function(err, res, body) {
-        var topArtists = [];
-        body.items.forEach(artist => 
-          artist.genres.forEach(genre =>
-            topArtists.push([
-              artist.name, artist.uri, genre
-            ])
-          )
-        );
-        toCsv(topArtists, '_medium_artists1-50');
-      })
+      // options['url'] = 'https://api.spotify.com/v1/me/top/artists?time_range=medium_term&limit=50';
+      // request.get(options, function(err, res, body) {
+      //   var topArtists = [];
+      //   body.items.forEach(artist => 
+      //     artist.genres.forEach(genre =>
+      //       topArtists.push([
+      //         artist.name, artist.uri, genre
+      //       ])
+      //     )
+      //   );
+      //   toCsv(topArtists, '_medium_artists1-50');
+      // })
 
-      options['url'] = 'https://api.spotify.com/v1/me/top/artists?time_range=medium_term&offset=49&limit=50';
-      request.get(options, function(err, res, body) {
-        var topArtists = [];
-        body.items.forEach(artist => 
-          artist.genres.forEach(genre =>
-            topArtists.push([
-              artist.name, artist.uri, genre
-            ])
-          )
-        );
-        toCsv(topArtists, '_medium_artists51-100');
-      })
+      // options['url'] = 'https://api.spotify.com/v1/me/top/artists?time_range=medium_term&offset=49&limit=50';
+      // request.get(options, function(err, res, body) {
+      //   var topArtists = [];
+      //   body.items.forEach(artist => 
+      //     artist.genres.forEach(genre =>
+      //       topArtists.push([
+      //         artist.name, artist.uri, genre
+      //       ])
+      //     )
+      //   );
+      //   toCsv(topArtists, '_medium_artists51-100');
+      // })
 
-      options['url'] = 'https://api.spotify.com/v1/me/top/artists?time_range=long_term&limit=50';
-      request.get(options, function(err, res, body) {
-        var topArtists = [];
-        body.items.forEach(artist => 
-          artist.genres.forEach(genre =>
-            topArtists.push([
-              artist.name, artist.uri, genre
-            ])
-          )
-        );
-        toCsv(topArtists, '_long_artists1-50');
-      })
+      // options['url'] = 'https://api.spotify.com/v1/me/top/artists?time_range=long_term&limit=50';
+      // request.get(options, function(err, res, body) {
+      //   var topArtists = [];
+      //   body.items.forEach(artist => 
+      //     artist.genres.forEach(genre =>
+      //       topArtists.push([
+      //         artist.name, artist.uri, genre
+      //       ])
+      //     )
+      //   );
+      //   toCsv(topArtists, '_long_artists1-50');
+      // })
 
-      options['url'] = 'https://api.spotify.com/v1/me/top/artists?time_range=long_term&offset=49&limit=50';
-      request.get(options, function(err, res, body) {
-        var topArtists = [];
-        body.items.forEach(artist => 
-          artist.genres.forEach(genre =>
-            topArtists.push([
-              artist.name, artist.uri, genre
-            ])
-          )
-        );
-        toCsv(topArtists, '_long_artists51-100');
-      })
+      // options['url'] = 'https://api.spotify.com/v1/me/top/artists?time_range=long_term&offset=49&limit=50';
+      // request.get(options, function(err, res, body) {
+      //   var topArtists = [];
+      //   body.items.forEach(artist => 
+      //     artist.genres.forEach(genre =>
+      //       topArtists.push([
+      //         artist.name, artist.uri, genre
+      //       ])
+      //     )
+      //   );
+      //   toCsv(topArtists, '_long_artists51-100');
+      // })
 
       // var con = mysql.createConnection({
       //   host: 
