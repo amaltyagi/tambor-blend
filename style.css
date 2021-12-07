@@ -80,24 +80,40 @@
 }
 
 .right-div {
-  background-color: rgb(25, 20, 20);
+  /* background-color: rgb(25, 20, 20); */
   color: white;
   text-align: center;
   width: 50vw;
-  padding-top: 44vh;
+  padding-top: 40.5vh;
   padding-left: 25px;
   padding-right: 25px;
+  
+  background-color: #000000;
+  /* opacity: 0.7;
+  background-image:  radial-gradient(#ffffff 0.5px, transparent 0.5px), radial-gradient(#ffffff 0.5px, #000000 0.5px);
+  background-size: 20px 20px;
+  background-position: 0 0,10px 10px; */
 }
 
 .btn-primary, .btn-primary:hover {
-  background-color: rgb(30,215,96);
+  background-color: rgb(30, 215, 96);
   border: solid 2px black;
   height: 50px;
-  /* padding-bottom: 20px; */
+  width: 140px;
+}
+
+#login-spotify-btn {
+  margin-top: -6px;
 }
 
 .login-text {
   margin-top: -4px;
+}
+
+#learn-tambor-btn {
+  margin-top: -6px;
+  margin-left: -8px;
+  background-color: rgb(230, 203, 54);
 }
 
 .btn-primary:hover {
@@ -175,7 +191,7 @@
   }
 }
 
-@media screen and (max-width: 690px) {
+@media screen and (max-width: 690px) and (min-width: 450px) {
   .home-divs {
     flex-direction: column;
   }
