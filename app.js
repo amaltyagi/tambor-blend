@@ -1,17 +1,17 @@
 const http = require('http');
 const port = process.env.PORT || 8888;
-const express = require('express'); // Express web server framework
-const request = require('request'); // "Request" library
+const express = require('express');
+const request = require('request');
 const cors = require('cors');
 const querystring = require('querystring');
 const cookieParser = require('cookie-parser');
 const ObjectsToCsv = require('objects-to-csv');
 const mysql = require('mysql');
 
-var client_id = 'f6adfa99d13644548a1c60e653246502'; // Your client id
-var client_secret = '570f580bd2a34f63a9c0a3bd750e1fc6'; // Your secret
-// var redirect_uri = 'https://tambor-blend.herokuapp.com/callback/'; // Your redirect uri
-var redirect_uri = 'https://tambor-dj.herokuapp.com/callback/';
+var client_id = 'f6adfa99d13644548a1c60e653246502';
+var client_secret = '570f580bd2a34f63a9c0a3bd750e1fc6';
+var redirect_uri = 'https://tambor-blend.herokuapp.com/callback/';
+// var redirect_uri = 'https://tambor-dj.herokuapp.com/callback/';
 let curr_id;
 
 /**
@@ -42,7 +42,6 @@ app.get('/login', function(req, res) {
   var state = generateRandomString(16);
   res.cookie(stateKey, state);
 
-  // your application requests authorization
   var scope = 'user-read-private user-read-email user-follow-read streaming playlist-modify-private playlist-modify-public playlist-read-private user-top-read';
   res.redirect('https://accounts.spotify.com/authorize?' +
     querystring.stringify({
@@ -56,9 +55,6 @@ app.get('/login', function(req, res) {
 });
 
 app.get('/callback', function(req, res) {
-
-  // your application requests refresh and access tokens
-  // after checking the state parameter
 
   var code = req.query.code || null;
   var state = req.query.state || null;
@@ -96,7 +92,6 @@ app.get('/callback', function(req, res) {
           json: true
         };
 
-        // use the access token to access the Spotify Web API
         request.get(options, function(error, response, body) {
           console.log(body);
           console.log(body.display_name);
@@ -107,7 +102,6 @@ app.get('/callback', function(req, res) {
           curr_id = body.id;
         });
 
-        // we can also pass the token to the browser to make requests from there
         res.redirect('/#' +
           querystring.stringify({
             access_token: access_token,
@@ -127,7 +121,6 @@ app.get('/callback', function(req, res) {
 
 app.get('/refresh_token', function(req, res) {
 
-  // requesting access token from refresh token
   var refresh_token = req.query.refresh_token;
   var authOptions = {
     url: 'https://accounts.spotify.com/api/token',
