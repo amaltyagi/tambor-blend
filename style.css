@@ -95,7 +95,7 @@
   background-position: 0 0,10px 10px; */
 }
 
-.btn-primary, .btn-primary:hover {
+.btn-primary, .btn-primary:hover, .btn-primary:active {
   background-color: rgb(30, 215, 96);
   border: solid 2px black;
   height: 50px;

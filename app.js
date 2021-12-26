@@ -1,5 +1,4 @@
 const http = require('http');
-const port = process.env.PORT || 8888;
 const express = require('express');
 const request = require('request');
 const cors = require('cors');
@@ -7,6 +6,9 @@ const querystring = require('querystring');
 const cookieParser = require('cookie-parser');
 const ObjectsToCsv = require('objects-to-csv');
 const mysql = require('mysql');
+const oracledb = require('oracledb');
+
+const port = process.env.PORT || 8888;
 
 var client_id = 'f6adfa99d13644548a1c60e653246502';
 var client_secret = '570f580bd2a34f63a9c0a3bd750e1fc6';
