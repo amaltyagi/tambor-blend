@@ -7,13 +7,42 @@ const cookieParser = require('cookie-parser');
 const ObjectsToCsv = require('objects-to-csv');
 const mysql = require('mysql');
 const oracledb = require('oracledb');
+const { connect } = require('http2');
 
 const port = process.env.PORT || 8888;
+
+oracledb.initOracleClient({ libDir: process.env.HOME + '/Downloads/instantclient_19_8' });
+
+async function addUser(id, display_name, uri, email) {
+
+let connection;
+
+try {
+
+    connection = await oracledb.getConnection({ user: "amalt", password: "Password12345#", connectionString: "AmalADW_high" });
+    const sql = `INSERT INTO BLEND_USERS VALUES (:1, :2, :3, :4)`;
+    const binds = [id, display_name, uri, email];
+    await connection.execute(sql, binds);
+    connection.commit();
+
+} catch (err) {
+    console.error(err);
+} finally {
+    if (connection) {
+    try {
+        await connection.close();
+    } catch (err) {
+        console.error(err);
+    }
+    }
+}
+}
+
+run();
 
 var client_id = 'f6adfa99d13644548a1c60e653246502';
 var client_secret = '570f580bd2a34f63a9c0a3bd750e1fc6';
 var redirect_uri = 'https://tambor-blend.herokuapp.com/callback/';
-// var redirect_uri = 'https://tambor-dj.herokuapp.com/callback/';
 let curr_id;
 
 /**
@@ -95,11 +124,11 @@ app.get('/callback', function(req, res) {
         };
 
         request.get(options, function(error, response, body) {
-          console.log(body);
-          console.log(body.display_name);
-          console.log(body.id);
-          console.log(body.uri);
-          console.log(body.email);
+          addUser(id, display_name, uri, email);
+          // console.log(body.display_name);
+          // console.log(body.id);
+          // console.log(body.uri);
+          // console.log(body.email);
 
           curr_id = body.id;
         });
@@ -136,23 +165,6 @@ app.get('/refresh_token', function(req, res) {
 
   request.post(authOptions, function(error, response, body) {
     if (!error && response.statusCode === 200) {
-      var con = mysql.createConnection({
-        HOST: "us-cdbr-east-04.cleardb.com",
-        USER: "b8ecddea309a73",
-        PASSWORD: "99ff4e22",
-        DB: "heroku_50ae15780e97258"
-      });
-
-      con.connect(function(err) {
-        if (err) throw err;
-        console.log('connected');
-        con.query(
-          "INSERT INTO users (user_id, user_email, user_name, user_uri, user_displayname, user_country) VALUES (0, 'test', 'test', 'test', 'test', 'test')",
-          function(err, result) {
-            if (err) throw err;
-            console.log('vals inserted');
-        });
-      });
 
       var access_token = body.access_token;
       res.send({
@@ -167,25 +179,20 @@ app.get('/refresh_token', function(req, res) {
         json: true
       };
 
-      // async function toCsv(list, file) {
-      //   const csv = new ObjectsToCsv(list);
-      //   await csv.toDisk('./user_data/'+curr_id+file+'.csv');
-      // }
-
-      // options['url'] = 'https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=50';
-      // request.get(options, function(err, res, body) {
-      //   var topTracks = [];
-      //   body.items.forEach(track => 
-      //     track.artists.forEach(artist => 
-      //       topTracks.push([
-      //         artist.name, artist.uri, 
-      //         track.album.name, track.album.uri, track.album.release_date, 
-      //         track.name, track.uri
-      //       ])
-      //     )
-      //   );
-      //   toCsv(topTracks, '_short_tracks1-50');
-      // })
+      options['url'] = 'https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=50';
+      request.get(options, function(err, res, body) {
+        var topTracks = [];
+        body.items.forEach(track => 
+          track.artists.forEach(artist => 
+            topTracks.push([
+              artist.name, artist.uri, 
+              track.album.name, track.album.uri, track.album.release_date, 
+              track.name, track.uri
+            ])
+          )
+        );
+        
+      })
 
       // options['url'] = 'https://api.spotify.com/v1/me/top/tracks?time_range=short_term&offset=49&limit=50';
       // request.get(options, function(err, res, body) {
